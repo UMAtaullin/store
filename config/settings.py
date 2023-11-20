@@ -43,7 +43,7 @@ ROOT_URLCONF = 'config.urls'
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',   # Движок для шаблонов.
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',   # Утилита для работы с шаблонами.
         'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
