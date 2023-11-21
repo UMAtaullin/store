@@ -1,4 +1,6 @@
+"""Импорт модуля."""
 from django.shortcuts import render
+
 
 
 def index(request):
@@ -8,6 +10,7 @@ def index(request):
 
 
 def products(request):
+    """Это достриг"""
     context = {
         'title': 'Store - Каталог',
         'products': [
