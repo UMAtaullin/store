@@ -2,16 +2,16 @@
 from django.shortcuts import render
 
 
-
 def index(request):
-    context = {'title': 'Store',
+    data = {
+        'title': 'Store',
                }
-    return render(request, 'products/index.html', context)
+    return render(request, 'products/index.html', data)
 
 
 def products(request):
-    """Это достриг"""
-    context = {
+    """Это докстриг"""
+    data = {
         'title': 'Store - Каталог',
         'products': [
             {
@@ -34,4 +34,4 @@ def products(request):
             }
         ]
     }
-    return render(request, 'products/products.html', context)
+    return render(request, 'products/products.html', data)

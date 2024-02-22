@@ -25,6 +25,9 @@ INSTALLED_APPS = [
     # Организации и обслуживании статических файлов проекта.
     'django.contrib.staticfiles',
 
+    # tools
+    'django_extensions',
+
     # local apps
     'products.apps.ProductsConfig',
 ]
