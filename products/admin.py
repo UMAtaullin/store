@@ -1,3 +1,3 @@
 from django.contrib import admin
 
-# Register your models here.
+# Чтобы наши таблицы отображались в админке.
