@@ -1,3 +1,7 @@
 from django.contrib import admin
 
-# Чтобы наши таблицы отображались в админке.
+from products.models import Product, ProductCategory
+
+
+admin.site.register(Product)
+admin.site.register(ProductCategory)
