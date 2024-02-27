@@ -1,0 +1,30 @@
+[
+	{
+		"model": "products.productcategory",
+		"pk": 1,
+		"fields": { "name": "Одежда", "description": "Описание одежды" }
+	},
+	{
+		"model": "products.productcategory",
+		"pk": 2,
+		"fields": { "name": "Обувь", "description": null }
+	},
+	{
+		"model": "products.productcategory",
+		"pk": 3,
+		"fields": {
+			"name": "Рюкзаки",
+			"description": "Рюкзаки всех типов и портфели"
+		}
+	},
+	{
+		"model": "products.productcategory",
+		"pk": 4,
+		"fields": { "name": "Подарки", "description": "Любые подарки" }
+	},
+	{
+		"model": "products.productcategory",
+		"pk": 5,
+		"fields": { "name": "Новинки", "description": "Свежие товары" }
+	}
+]
