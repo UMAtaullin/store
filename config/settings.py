@@ -1,5 +1,7 @@
 from pathlib import Path
 
+from django.conf.global_settings import AUTH_USER_MODEL
+
 BASE_DIR = Path(__file__).resolve().parent.parent   # Путь до корня.
 
 SECRET_KEY = 'django-insecure-4au3(lk_rk@($uap^$^p+ggoh#m75dwoto&!e4=g!uy^0iku-n'
@@ -30,14 +32,18 @@ INSTALLED_APPS = [
 
     # local apps
     'products.apps.ProductsConfig',
+    'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',            # Безопасность.
-    'django.contrib.sessions.middleware.SessionMiddleware',     # Проброска сессий для пользователей.
+    # Проброска сессий для пользователей.
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',                # ...
-    'django.middleware.csrf.CsrfViewMiddleware',                # Защита от атак csrf токены.
-    'django.contrib.auth.middleware.AuthenticationMiddleware',  # Аунтификацию добавляют.
+    # Защита от атак csrf токены.
+    'django.middleware.csrf.CsrfViewMiddleware',
+    # Аунтификацию добавляют.
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -46,7 +52,8 @@ ROOT_URLCONF = 'config.urls'
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',   # Утилита для работы с шаблонами.
+        # Утилита для работы с шаблонами.
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -102,3 +109,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Users
+
+AUTH_USER_MODEL = 'users.User'
