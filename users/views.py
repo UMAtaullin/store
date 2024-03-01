@@ -1,8 +1,26 @@
-from django.shortcuts import render
+from django.contrib import auth
+from django.shortcuts import redirect, render
+
+from users.forms import UserLoginForm
 
 
 def login(request):
-    return render(request, 'users/login.html')
+    if request.method == 'POST':
+        form = UserLoginForm(data=request.POST)
+        if form.is_valid():
+            username = request.POST['username']
+            password = request.POST['password']
+            user = auth.authenticate(username=username, password=password)
+            if user:
+                auth.login(request, user)
+                return redirect('index')
+    else:
+        form = UserLoginForm()
+
+    data = {
+        'form': form,
+    }
+    return render(request, 'users/login.html', data)
 
 
 def registration(request):
