@@ -17,33 +17,37 @@
           </div>
           <div class="card-body">
           <form action="{% url 'users:registration' %}" method="post">
-              {% csrf_token %}
+            {% csrf_token %}
 
-              {% for elem in form %}
-                  {% if elem.name in 'first_name username password1' %}
-                      <div class="form-row">
-                          <div class="col-md-6">
-                              <div class="form-group">
-                                  <label class="small mb-1"
-                                        for="{{ elem.id_for_label }}">{{ elem.label }}</label>
-                                  {{ elem }}
-                              </div>
-                          </div>
-                      {% else %}
-                          <div class="col-md-6">
-                              <div class="form-group">
-                                  <label class="small mb-1"
-                                        for="{{ elem.id_for_label }}">{{ elem.label }}</label>
-                                  {{ elem }}
-                              </div>
-                          </div>
-                      </div>
-                  {% endif %}
-              {% endfor %}
-
-              <div class="form-group mt-4 mb-0">
-                  <input class="btn btn-primary btn-block" type="submit" value="Создать аккаунт">
+            {% for elem in form %}
+              {% if elem.name in 'first_name username password1' %}
+                <div class="form-row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                    <label class="small mb-1"
+                      for="{{ elem.id_for_label }}">
+                      {{ elem.label }}
+                    </label>
+                  {{ elem }}
+                </div>
               </div>
+            {% else %}
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="small mb-1"
+                      for="{{ elem.id_for_label }}">
+                      {{ elem.label }}
+                    </label>
+                      {{ elem }}
+                    </div>
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+
+            <div class="form-group mt-4 mb-0">
+                <input class="btn btn-primary btn-block" type="submit" value="Создать аккаунт">
+            </div>
           </form>
         </div>
         <div class="card-footer text-center">

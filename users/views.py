@@ -1,7 +1,7 @@
 from django.contrib import auth
 from django.shortcuts import redirect, render
 
-from users.forms import UserLoginForm, UserRegistrationForm
+from users.forms import UserLoginForm, UserProfileForm, UserRegistrationForm
 
 
 def login(request):
@@ -34,3 +34,12 @@ def registration(request):
     form = UserRegistrationForm()
     data = {'form': form}
     return render(request, 'users/registration.html', data)
+
+
+def profile(request):
+    form = UserProfileForm()
+    data = {
+        'title': 'UMStore - Профиль',
+        'form': form,
+    }
+    return render(request, 'users/profile.html', data)
