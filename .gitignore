@@ -163,5 +163,5 @@ cython_debug/
 
 # Personal file
 .build/
-media/
 static/
+media/
