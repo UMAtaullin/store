@@ -1,4 +1,5 @@
-from django.contrib import auth
+from django.contrib import auth, messages
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 
 from users.forms import UserLoginForm, UserProfileForm, UserRegistrationForm
@@ -28,6 +29,7 @@ def registration(request):
         form = UserRegistrationForm(data=request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Вы успешно зарегестировались!')
             return redirect('users:login')
     else:
         form = UserRegistrationForm()
@@ -36,10 +38,24 @@ def registration(request):
     return render(request, 'users/registration.html', data)
 
 
+@login_required
 def profile(request):
-    form = UserProfileForm()
+    if request.method == 'POST':
+        form = UserProfileForm(instance=request.user,
+                               data=request.POST,
+                               files=request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('users:profile')
+    else:
+        form = UserProfileForm(instance=request.user)
     data = {
         'title': 'UMStore - Профиль',
         'form': form,
     }
     return render(request, 'users/profile.html', data)
+
+
+def logout(request):
+    auth.logout(request)
+    return redirect('index')

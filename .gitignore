@@ -163,4 +163,5 @@ cython_debug/
 
 # Personal file
 .build/
-products_images/
+media/
+static/
