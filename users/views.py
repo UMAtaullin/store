@@ -50,10 +50,18 @@ def profile(request):
             return redirect('users:profile')
     else:
         form = UserProfileForm(instance=request.user)
+
+    baskets = Basket.objects.filter(user=request.user)
+    # total_sum = 0
+    # total_quantity = 0
+    # for basket in baskets:
+    #     total_sum = total_sum + basket.sum()
+    #     total_quantity = total_quantity + basket.quantity
+
     data = {
         'title': 'UMStore - Профиль',
         'form': form,
-        'baskets': Basket.objects.filter(user=request.user)
+        'baskets': baskets,
     }
     return render(request, 'users/profile.html', data)
 

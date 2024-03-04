@@ -23,11 +23,37 @@ class Product(models.Model):
         return f'Продукт: {self.name} | Категории: {self.category}'
 
 
+class BasketQuerySet(models.QuerySet):
+    def total_sum(self):
+        """Общая стоимость всех товаров."""
+        return sum(basket.sum() for basket in self)
+
+    def total_quantity(self):
+        """Общая количество всех товаров."""
+        return sum(basket.quantity for basket in self)
+
+
 class Basket(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
     product = models.ForeignKey(to=Product, on_delete=models.CASCADE)
     quantity = models.PositiveSmallIntegerField(default=0)
     create_timestamp = models.DateTimeField(auto_now_add=True)
 
+    objects = BasketQuerySet.as_manager()
+
     def __str__(self):
         return f'Корзина для {self.user.username} | Продукт: {self.product.name}'
+
+    def sum(self):
+        """Итоговая стоимость товара."""
+        return self.product.price * self.quantity
+
+    # def total_sum(self):
+    #     """Общая стоимость всех товаров."""
+    #     baskets = Basket.objects.filter(user=self.user)
+    #     return sum(basket.sum() for basket in baskets)
+
+    # def total_quantity(self):
+    #     """Общая количество всех товаров."""
+    #     baskets = Basket.objects.filter(user=self.user)
+    #     return sum(basket.quantity for basket in baskets)
