@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from django.conf.global_settings import AUTH_USER_MODEL
+from django.conf.global_settings import AUTH_USER_MODEL, LOGIN_URL
 
 BASE_DIR = Path(__file__).resolve().parent.parent   # Путь до корня.
 
@@ -110,3 +110,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Users
 
 AUTH_USER_MODEL = 'users.User'
+LOGIN_URL = '/users/login/'
