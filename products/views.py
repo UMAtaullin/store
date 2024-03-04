@@ -21,6 +21,7 @@ def product(request):
     return render(request, 'products/products.html', data)
 
 
+@login_required
 def basket_add(request, product_id):
     """Добавление товара в корзину покупок."""
     product = Product.objects.get(id=product_id)
