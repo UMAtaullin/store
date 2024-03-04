@@ -1,6 +1,7 @@
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
+from products.models import Basket
 
 from users.forms import UserLoginForm, UserProfileForm, UserRegistrationForm
 
@@ -52,6 +53,7 @@ def profile(request):
     data = {
         'title': 'UMStore - Профиль',
         'form': form,
+        'baskets': Basket.objects.filter(user=request.user)
     }
     return render(request, 'users/profile.html', data)
 
