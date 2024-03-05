@@ -10,9 +10,14 @@ def index(request):
     return render(request, 'products/index.html', data)
 
 
-def product(request):
-    products = Product.objects.all()
+def product(request, category_id=None):
     categories = ProductCategory.objects.all()
+    if category_id:
+        category = ProductCategory.objects.get(id=category_id)
+        products = Product.objects.filter(category=category)
+    else:
+        products = Product.objects.all()
+
     data = {
         'title': 'Store - Каталог',
         'products': products,
