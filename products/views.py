@@ -6,13 +6,17 @@ from products.models import Basket, Product, ProductCategory
 def index(request):
     data = {
         'title': 'Store',
-               }
+    }
     return render(request, 'products/index.html', data)
 
 
-def product(request):
-    products = Product.objects.all()
+def product(request, category_id=None):
     categories = ProductCategory.objects.all()
+    if category_id:
+        products = Product.objects.filter(category__id=category_id)
+    else:
+        products = Product.objects.all()
+
     data = {
         'title': 'Store - Каталог',
         'products': products,
